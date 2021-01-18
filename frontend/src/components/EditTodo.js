@@ -7,7 +7,7 @@ function EditTodo({getDescription}) {
     const updateDescription= async (e)=>{
         e.preventDefault();
         const body ={desc}
-        const response = await fetch(`http://localhost:3004/todos/${getDescription.todo_id}}`,{
+        const response = await fetch(`/todos/${getDescription.todo_id}`,{
             method:"PUT",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify(body)

@@ -6,7 +6,7 @@ function ListTodo() {
     const [getDescription,setDescription]= useState([])
     const getTodos= async ()=>{
         try {
-            const response = await fetch("http://localhost:3004/todos")
+            const response = await fetch("/todos")
             const result = await response.json();
             setDescription(...getDescription,result)
             console.log(result);
@@ -18,7 +18,7 @@ function ListTodo() {
 
     const deleteTodo=async (id)=>{
         try {
-            const deleteTodo = await fetch(`http://localhost:3004/todos/${id}`,{
+            const deleteTodo = await fetch(`/todos/${id}`,{
                 method:"DELETE",
             })
             console.log("Deleted Sucessfully");

@@ -2,14 +2,19 @@ const express = require ('express')
 const app = express();
 const cors =require('cors')
 const pool = require('./db');
+require('dotenv').config({})
+const path = require('path')
 
 //middleware
 app.use(cors())
 app.use(express.json())
-
+ 
+if(process.env.NODE_ENV === 'production'){
+    //serve static content
+    app.use(express.static(path.join(__dirname,'./frontend/build')))
+}
 
 //ROUTES
-
 //create a todo 
 app.post('/todos', async (req,res)=>{
     try{
@@ -62,5 +67,9 @@ app.delete("/todos/:id", async(req,res)=>{
     } 
 })
 
-const PORT = 3004;
+app.get("*", (req,res)=>{
+    res.sendFile(path.join(__dirname,"./frontend/build/index.html"))
+})  
+ 
+const PORT =   process.env.PORT ||   3004 ;
 app.listen(PORT,console.log(`Server running on PORT ${PORT}`))

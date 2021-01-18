@@ -10,14 +10,14 @@ function InputTodo() {
     const onsubmitForm=async (e)=>{
         e.preventDefault();
         const body ={description}
-        const response = await fetch("http://localhost:3004/todos",{
+        const response = await fetch("/todos",{
             method : "POST",
             headers : {"Content-Type" : "application/json"},
             body : JSON.stringify(body)
         })
         setDescription("")
         console.log(response);
-        window.location="/"
+   //     window.location="/"
     }
   
     return (
